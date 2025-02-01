@@ -1,6 +1,6 @@
-Team name:
+Team name: 404 Brain Not Found
 
-Team members:
+Team members: Dylan Brown, Eli Assaf, Michael Gradowski, Nick Fultz
 
 # Introduction
 
@@ -9,11 +9,15 @@ Team members:
 
 # Anticipated Technologies
 
-(What technologies are needed to build this project)
+Python, CSS, HTML
 
 # Method/Approach
 
 (What is your estimated "plan of attack" for developing this project)
+1. Solidify logic, unit testing
+2. Plan out UI/UX
+3. Execute UI Production and formatting
+4. Test UX/UI design functionality
 
 # Estimated Timeline
 
