@@ -1,6 +1,6 @@
 # 404BrainNotFound
 
-Project description (~1 Paragraph)
+Our project is a macronutrient (fats, protein, carbohydrates) and calorie calculator. The logic is written in Python, while user interface design is currently being planned. The calorie calculator portion of our project first calculates a user's basal metabolic rate (the amount of calories need for the body to function while stagnant) and calculates maintenance calories using that BMR. Next, the application uses a user's maintenance calories to calculate calorie deficits (weight loss) or surplus amounts (weight/muscle gain). 
 
 # Team Members and Roles
 
