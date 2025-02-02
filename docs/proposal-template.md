@@ -1,6 +1,6 @@
 Team name: 404 Brain Not Found
 
-Team members: Dylan Brown, Eli Assaf, Michael Gradowski, Nick Fultz
+Team members: Dylan Brown, Eli Assaf, Michael Frankowski, Nick Fultz
 
 # Introduction
 
