@@ -4,8 +4,13 @@ Team members: Dylan Brown, Eli Assaf, Michael Frankowski, Nick Fultz
 
 # Introduction
 
-(In 2-4 paragraphs, describe your project concept)
-(Also define some loosely defined features of your project using bullet points)
+Fitness is something that is important for everyone's lives and health, and this project provides individuals with a starting point. Our project is a simple Macronutrient and Calorie calculator with backend logic developed in Python. This allows for users to see the amount of calories and each macronutrient which they should be consuming each day, providing them with an easy starting point in their fitness journey.
+
+The logic of our project begins by taking a user's height, weight, activity level (sedentary, moderate, active), gender.
+From there, it moves into calculating a user's basal metabolic rate (BMR):
+- Uses Harris-Benedict Formula 
+- Basal Metabolic Rate: Amount of energy (calories) a persons body needs to function while at rest.
+Next, it uses the users BMR to calculate maintenance calories, calorie deficit, and calorie surplus. It then uses a user's maintenance calories to calculate macronutrients (fats, protein, carbohydrates). 
 
 # Anticipated Technologies
 
@@ -21,10 +26,11 @@ Python, CSS, HTML
 
 # Estimated Timeline
 
-(Figure out what your major milestones for this project will be, including how long you anticipate it *may* take to reach that point)
+Backend logic is essentially done, whereas UI/UX development has not been started. Hoping to get a start in the next couple weeks,and have details ironed out by spring break.
 
 # Anticipated Problems
 
-(Describe any problems you foresee that you will need to overcome)
+General problems which could arise from unfamiliarity of CSS or HTML.
+General problems which could arise from unfamiliarity with UI/UX development.
 
 Remember this is a living document is expected to be changed as you make progress on your project.
