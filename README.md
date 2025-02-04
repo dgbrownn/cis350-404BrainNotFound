@@ -6,7 +6,7 @@ Our project is a macronutrient (fats, protein, carbohydrates) and calorie calcul
 
 * Dylan Brown (Python Backend Logic, Logic Unit Testing)
 * Michael Frankowski (Debugger, Tester)
-* Eli Assaf (Role 5, Role 6)
+* Eli Assaf (Debugger, Frontend Logic)
 * Nick Fultz (Role 7, Role 8)
 
 # Prerequisites
