@@ -5,23 +5,23 @@ Hold a team meeting at least once a week in some format. Copy the following temp
 
 # Meeting Minutes Templates
 
-Team name:
+Team name: 404 Brain Not Found
 
-Members present:
+Members present: Dylan Brown, Nick Fultz, Michael Frankowski, Eli Assaf
 
-Date:
+Date: 2/7/2025
 
-Time:
+Time: 3:30
 
 Discussion points:
 
-*   
-* 
-* 
+*   Need to start a design phase.
+*   Should work on getting more code done.
+*   Need to see what we want this app to look like
 
 Goals for next week (include responsibilities)
 
-* 
-* 
-* 
+*  Get some designing done.
+*  Develop more code.
+
 
