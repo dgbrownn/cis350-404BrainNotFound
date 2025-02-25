@@ -7,6 +7,7 @@ The purpose of this document is to show the software requirements specifications
 * FR-03: The system shall be able to show results clearly
 
 ## Non-Functional Requirements
+### Metabolic Rate Function
 * NFR-01: User data shall be encrypted and secured
 * NFR-02: The application shall have an easy to use interface
 * NFR-03: Logic shall be able to be managed and updated easily
