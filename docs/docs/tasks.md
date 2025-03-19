@@ -10,7 +10,6 @@
 
 - **Responsible:** [Dylan/Nick]
 
-
 ### Task 2: Testing and Debugging
 
 - **Name:** Testing and Debugging
