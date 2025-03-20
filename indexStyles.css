@@ -1,0 +1,90 @@
+/* Reset & Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* Left Section Styles */
+.left-section {
+    background: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: inset -5px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow on the right edge */
+}
+
+.left-section h1 {
+    font-family: 'Genos', sans-serif;
+    font-size: 8vw;
+    margin: 0;
+}
+
+.left-section h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.left-section p {
+    font-size: 1rem;
+    color: gray;
+}
+
+/* Right Section Styles */
+.right-section {
+    background: #cce7ff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 5px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow on the left edge */
+}
+
+/* Google Button */
+.button-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.button-google img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+/* Signup Form Styles */
+.signup {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.signup input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signup button {
+    background: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
