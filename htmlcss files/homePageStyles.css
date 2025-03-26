@@ -16,18 +16,29 @@ body {
 
 .sidebar {
     grid-area: sidebar;
-    background-color: #333;
+    background-color: gray;
     color: white;
     padding: 10px;
+    display: flex; /* Make the sidebar a flex container */
+    flex-direction: column; /* Stack contents vertically */
 }
 
 .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0; /* Remove default margins */
+    flex: 1; /* Allow the ul to take up available space */
+    display: flex; /* Use Flexbox to control layout */
+    flex-direction: column; /* Stack items vertically */
 }
 
 .sidebar li {
-    margin-bottom: 20px;
+    margin: 15px 0; /* Keep spacing for items at the top */
+}
+
+.sidebar li.settings-item {
+    margin-top: auto; /* Push the settings item to the bottom */
+    margin-bottom: 10px; /* Add some padding at the bottom for aesthetics */
 }
 
 .sidebar a {
@@ -58,7 +69,43 @@ body {
     color: #333;
 }
 
-p{
-    background: rgb(193, 6, 6);
+/* New styles for the calorie summary section */
+.content h2 {
+    margin-bottom: 20px;
+}
+
+.calorie-summary {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow boxes to wrap on smaller screens */
+}
+
+.info-box {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px; /* Ensure boxes don’t get too narrow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.info-box p {
+    margin: 0;
+    background: none; /* Override the earlier p style */
+    color: #333;
+    font-size: 1.1em;
+}
+
+.info-box span {
+    font-weight: bold;
     color: #146017;
+    font-size: 1.3em;
 }
