@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    color: black;
 }
 
 .layout {
@@ -44,7 +45,7 @@ body {
 .header {
     grid-area: header;
     background-color: #cce7ff;
-    color: white;
+    color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
     padding: 0 20px;
