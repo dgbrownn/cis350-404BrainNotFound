@@ -1,4 +1,3 @@
-/* Reset & Global Styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -6,7 +5,6 @@ body {
     height: 100vh;
 }
 
-/* Left Section Styles */
 .left-section {
     background: white;
     flex: 1;
@@ -35,7 +33,6 @@ body {
     color: gray;
 }
 
-/* Right Section Styles */
 .right-section {
     background: #cce7ff;
     flex: 1;
@@ -46,7 +43,7 @@ body {
     box-shadow: inset 5px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow on the left edge */
 }
 
-/* Google Button */
+
 .button-google {
     display: flex;
     align-items: center;
@@ -58,6 +55,11 @@ body {
     cursor: pointer;
     border-radius: 5px;
     margin-bottom: 20px;
+}
+
+.button-google:hover {
+    background: #0078d496; 
+    
 }
 
 .button-google img {
@@ -87,4 +89,11 @@ body {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    
+}
+
+.signup button:hover {  
+    background: #0078d496;
+    border: 2px;
+    border-color: black;
 }
