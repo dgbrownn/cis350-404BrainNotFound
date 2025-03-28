@@ -1,48 +1,48 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #cce7ff;
+    margin: 0; /* Remove default body margin */
+    font-family: Arial, sans-serif; /* Sets the text font */
+    display: flex; /* Use Flexbox layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Full height of the viewport */
+    background: #cce7ff; /* Light blue background color */
 }
 .login-container {
-    background: white;
-    width: 350px;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+    background: white; /* White background for the login box */
+    width: 350px; /* Fixed width */
+    padding: 30px;/* Inner spacing (I think -Eli Assaf)*/
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth (I think -Eli) */
+    text-align: center; /* Center-align text */
+    display: flex; /* Use Flexbox layout */
+    flex-direction: column; /* Stack items vertically */
     align-items: center; /* Centers all items horizontally */
     gap: 15px; /* Adds consistent spacing between items */
 }
 
 .login-container h1 {
-    font-family: 'Genos', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-family: 'Genos', sans-serif; /* Custom font */
+    font-size: 2rem; /* Large heading size */
+    margin-bottom: 20px; /* Space below the heading */
 }
 .login-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+    width: 100%; /* Full width of container */
+    padding: 10px; /* Inner spacing for better usability */
+    margin: 10px; /* Outer spacing between inputs */
+    border: 1px solid #ccc; /* color border */
+    border-radius: 5px; /* rounded corners */
+    font-size: 1rem; /* text size */
 }
 .login-container button {
-    width: 100%;
-    padding: 10px;
-    background: #0078d4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
+    width: 100%; /* Full width of container */
+    padding: 10px; /* Inner spacing for the button */
+    background: #0078d4; /* background color */
+    color: white; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* font size */
+    cursor: pointer; /* Not sure -ELI */
+    margin-top: 10px; /* Space above the button??? -Eli */
 }
 .login-container button:hover {
     background: #005ea6;
