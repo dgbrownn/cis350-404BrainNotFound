@@ -1,0 +1,99 @@
+body {
+    margin: 0; /* Remove default margin from the body */
+    font-family: Arial, sans-serif; /* Set the default font */
+    display: flex; /* Use flexbox layout for the body */
+    height: 100vh; /* Set the height to 100% of the viewport */
+}
+
+.left-section {
+    background: white; /* Set the background color to white */
+    flex: 1; /* Make this section take up equal space as the right section */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text within the section */
+    padding: 20px; /* Add padding around the content */
+    box-shadow: inset -5px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow on the right edge */
+}
+
+.left-section h1 {
+    font-family: 'Genos', sans-serif; /* Use the 'Genos' font for h1 */
+    font-size: 8vw; /* Make the font size responsive based on viewport width */
+    margin: 0; /* Remove default margin */
+}
+
+.left-section h2 {
+    font-size: 1.5rem; /* Set font size for h2 */
+    margin: 10px 0; /* Add margin above and below h2 */
+}
+
+.left-section p {
+    font-size: 1rem; /* Set font size for paragraph text */
+    color: gray; /* Set text color to gray */
+}
+
+.right-section {
+    background: #cce7ff; /* Set background color to a light blue */
+    flex: 1; /* Make this section take up equal space as the left section */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    box-shadow: inset 5px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow on the left edge */
+}
+
+
+.button-google {
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Align content vertically in the center */
+    justify-content: center; /* Align content horizontally in the center */
+    background: white; /* Set the background color to white */
+    color: #333; /* Set text color to dark gray */
+    padding: 3% 12%; /* Add padding around the button */
+    border: none; /* Remove the border */
+    cursor: pointer; /* Change cursor to a pointer on hover */
+    border-radius: 5px; /* Round the corners of the button */
+    margin-bottom: 20px; /* Add bottom margin for spacing */
+}
+
+.button-google:hover {
+    background: #0078d496; 
+    
+}
+
+.button-google img {
+    width: 20px; /* Set image width */
+    margin-right: 10px; /* Add margin to the right of the image */
+}
+
+/* Signup Form Styles */
+.signup {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.signup input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signup button {
+    background: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+.signup button:hover {  
+    background: #0078d496;
+    border: 2px;
+    border-color: black;
+}
