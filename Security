@@ -1,1 +1,17 @@
+import hashlib
 
+def sha256_hash(text):
+    # Encode the text to bytes
+    encoded_text = text.encode()
+
+    # Create a SHA-256 hash object
+    hash_object = hashlib.sha256(encoded_text)
+
+    # Get the hexadecimal representation of the hash
+    hex_digest = hash_object.hexdigest()
+
+    return hex_digest
+
+# Example usage
+text = input("Enter text to hash: ")
+print("SHA-256 Hash:", sha256_hash(text)
