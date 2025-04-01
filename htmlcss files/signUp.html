@@ -1,53 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- Specifies document language as English -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MacroCal Form</title>
-    <link rel="stylesheet" href="signUpStyles.css">
+    <meta charset="UTF-8"> <!-- Sets character encoding to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures compatability on different screen sizes -->
+    <title>MacroCal Form</title> <!-- Sets the page title -->
+    <link rel="stylesheet" href="signUpStyles.css"> <!-- Links external CSS file for styling -->
 </head>
 <body>
-    <div class="container">
-        <h1>Thank you for Choosing <span class="highlight">MacroCal!</span></h1>
-        <p>You are almost ready to get a <span class="highlight">Personal Plan!</span> We just need some information from you.</p>
+    <div class="container"> <!-- Main container for the form -->
+        <h1>Thank you for Choosing <span class="highlight">MacroCal!</span></h1> <!-- Heading with highlighted text -->
+        <p>You are almost ready to get a <span class="highlight">Personal Plan!</span> We just need some information from you.</p> <!-- Introductory text -->
         <form>
-            <div class="form-group">
+            <div class="form-group"> <!-- Group for weight input -->
                 <label for="weight">Enter Your Weight</label>
-                <input type="number" id="weight" name="weight" placeholder="Enter a Number">
-                <div class="unit-toggle">
+                <input type="number" id="weight" name="weight" placeholder="Enter a Number"> <!-- Number input for weight -->
+                <div class="unit-toggle"> <!-- Choose between lbs and kg (I think? -Eli) -->
                     <label for="lbs">lbs</label>
-                    <input type="radio" id="lbs" name="weight-unit" value="lbs" checked>
+                    <input type="radio" id="lbs" name="weight-unit" value="lbs" checked> <!-- Default selected weight unit (lbs) -->
                     <label for="kg">kg</label>
-                    <input type="radio" id="kg" name="weight-unit" value="kg">
+                    <input type="radio" id="kg" name="weight-unit" value="kg">  <!-- Alternative weight unit (kg) -->
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group"> <!-- Group for height input -->
                 <label for="height">Enter Your Height</label>
-                <input type="number" id="height" name="height" placeholder="Enter a Number">
-                <div class="unit-toggle">
+                <input type="number" id="height" name="height" placeholder="Enter a Number"> <!-- Number input for height -->
+                <div class="unit-toggle"> <!-- Toggle between inches and cm -->
                     <label for="ft">in</label>
-                    <input type="radio" id="ft" name="height-unit" value="ft" checked>
+                    <input type="radio" id="ft" name="height-unit" value="ft" checked> <!-- Default selected height unit (inches) -->
                     <label for="cm">cm</label>
-                    <input type="radio" id="cm" name="height-unit" value="cm">
+                    <input type="radio" id="cm" name="height-unit" value="cm"> <!-- Alternative height unit (cm) -->
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group"> <!-- Group for exercise frequency (I think -Eli) -->
                 <label for="exercise">About How Many Days a Week Do You Exercise?</label>
-                <input type="number" id="exercise" name="exercise" placeholder="Enter a Number">
+                <input type="number" id="exercise" name="exercise" placeholder="Enter a Number"> <!-- Number input for exercise days -->
             </div>
-            <div class="form-group">
+            <div class="form-group"> <!-- Group for gender selection -->
                 <label for="gender">Gender</label>
-                <div class="gender-toggle">
+                <div class="gender-toggle"> <!-- Toggle for gender selection -->
                     <label for="male">Male</label>
-                    <input type="radio" id="male" name="gender" value="male" checked>
+                    <input type="radio" id="male" name="gender" value="male" checked> <!-- Default selected gender (male) -->
                     <label for="female">Female</label>
-                    <input type="radio" id="female" name="gender" value="female">
+                    <input type="radio" id="female" name="gender" value="female"> <!-- Alternative gender option (female) -->
                 </div>
             </div>
             
-        </form>
-        <button onclick="location.href='homePage.html';">Complete</button><br>
-        <button class="login" onclick="location.href='login.html';">Login Instead</button>
+        </form> <!-- Form ends -->
+        <button onclick="location.href='homePage.html';">Complete</button><br> <!-- Redirects to home page when clicked -->
+        <button class="login" onclick="location.href='login.html';">Login Instead</button> <!-- Redirects to login page when clicked --
     </div>
 </body>
 </html>
