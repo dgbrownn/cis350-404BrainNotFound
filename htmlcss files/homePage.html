@@ -1,41 +1,225 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- Set the language of the document to English -->
+<html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- Character encoding for correct text display (I think -Eli) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Correct design for different devices (mobile?, servers, etc) -->
-    <title>Basic Layout</title> <!-- Title shown in the browser tab -->
-    <link rel="stylesheet" href="homePageStyles.css"> <!-- Link to external file for styling (CSS file?) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Screen with Tabs</title>
+    <link rel="stylesheet" href="homePageStyles.css">
 </head>
 <body>
-    <div class="layout"> <!-- Main layout container -->
-        <nav class="sidebar"> <!-- Sidebar navigation section -->
+    <div class="layout">
+        <nav class="sidebar">
             <ul>
-                <li><a href="#"><img src="https://www.nicepng.com/png/full/17-178841_home-png-home-icon-free.png" alt="Home"> home</a></li> <!-- Home button with icon -->
-                
-                <li class="settings-item"><a href="#"><img src="https://th.bing.com/th/id/OIP.4peAp0JoHFHJooTGiQEa7gAAAA?rs=1&pid=ImgDetMain" alt="Settings"> Settings</a></li> <!-- Settings button with icon -->
-                <br><li class="LogOutButton"><a href="Index.html">Log Out</a></li> <!-- Log out button -->
+                <li><a href="#"><img src="/api/placeholder/20/20" alt="Home"> Home</a></li>
+                <li class="settings-item"><a href="#" id="settings-button"><img src="/api/placeholder/20/20" alt="Settings"> Settings</a></li>
+                <li class="LogOutButton"><a href="Index.html">Log Out</a></li>
             </ul>
         </nav>
-        <header class="header"> <!-- Header section -->
-            <h1>Home</h1> <!-- Main header title (I think -ELI) -->
+        <header class="header">
+            <h1>Home</h1>
         </header>
-        <main class="content"> <!-- Main content area -->
-            <h2>Your Caloric Intake Summary</h2> <!-- Sub-header (I think ELI) -->
-            <div class="calorie-summary"> <!-- Container for calorie summary boxes -->
-                <div class="info-box"> <!-- Info box -->
-                    <h3>Recommended Daily Intake</h3> <!-- Box title -->
-                    <p><span>####</span> calories</p> <!-- Placeholder for calorie value -->
+        <main class="content">
+            <h2>Your Caloric Intake Summary</h2>
+            <div class="calorie-summary">
+                <div class="info-box">
+                    <h3>Recommended Daily Intake</h3>
+                    <p><span>2100</span> calories</p>
                 </div>
-                <div class="info-box"> <!-- second info box -->
-                    <h3>More Information</h3> <!-- second box title -->
-                    <p><span>####</span> lorem</p> <!-- Placeholder text -->
+                <div class="info-box">
+                    <h3>More Information</h3>
+                    <p><span>1500</span> lorem</p>
                 </div>
-                <div class="info-box"> <!-- third info box -->
-                    <h3>More Information</h3> <!-- third box title -->
-                    <p><span>####</span> ipsum</p> <!-- Placeholder text -->
+                <div class="info-box">
+                    <h3>More Information</h3>
+                    <p><span>600</span> ipsum</p>
                 </div>
             </div>
         </main>
     </div>
+
+    <!-- Improved Settings Overlay -->
+    <div id="settings-overlay">
+        <div class="settings-container">
+            <div class="settings-header">
+                <h2>Settings</h2>
+                <button class="close-button" id="close-button">×</button>
+            </div>
+            <div class="settings-body">
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="profile">Profile</button>
+                    <button class="tab-button" data-tab="privacy">Privacy</button>
+                    <button class="tab-button" data-tab="notifications">Notifications</button>
+                    <button class="tab-button" data-tab="appearance">Appearance</button>
+                    <button class="tab-button" data-tab="account">Account</button>
+                </div>
+                <div class="tab-content-container">
+                    <div class="tab-content" id="profile">
+                        <h3>Profile Settings</h3>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" class="form-control" value="28">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" class="form-control" value="75">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" class="form-control" value="180">
+                        </div>
+                    </div>
+                    <div class="tab-content" id="privacy" style="display: none;">
+                        <h3>Privacy Settings</h3>
+                        <div class="switch-container">
+                            <span class="switch-label">Share my profile with other users</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="switch-container">
+                            <span class="switch-label">Allow friend requests</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="switch-container">
+                            <span class="switch-label">Show my progress publicly</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="switch-container">
+                            <span class="switch-label">Share data with third-parties</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="notifications" style="display: none;">
+                        <h3>Notification Preferences</h3>
+                        <div class="switch-container">
+                            <span class="switch-label">Email notifications</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="switch-container">
+                            <span class="switch-label">Push notifications</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="switch-container">
+                            <span class="switch-label">Daily reminders</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="switch-container">
+                            <span class="switch-label">Weekly progress reports</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="appearance" style="display: none;">
+                        <h3>Appearance Settings</h3>
+                        <div class="form-group">
+                            <label for="theme">Theme</label>
+                            <select id="theme" class="form-control">
+                                <option>Light</option>
+                                <option>Dark</option>
+                                <option>System Default</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fontSize">Font Size</label>
+                            <select id="fontSize" class="form-control">
+                                <option>Small</option>
+                                <option selected>Medium</option>
+                                <option>Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="account" style="display: none;">
+                        <h3>Account Settings</h3>
+                        <div class="form-group">
+                            <label for="changePassword">Change Password</label>
+                            <input type="password" id="changePassword" class="form-control" placeholder="New password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm new password">
+                        </div>
+                        <button class="btn">Update Password</button>
+                        <hr class="section-divider">
+                        <button class="btn btn-danger">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-footer">
+                <button class="btn btn-secondary" id="cancel-button">Cancel</button>
+                <button class="btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const settingsButton = document.getElementById('settings-button');
+        const settingsOverlay = document.getElementById('settings-overlay');
+        const closeButton = document.getElementById('close-button');
+        const cancelButton = document.getElementById('cancel-button');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        
+        // Open settings overlay
+        settingsButton.addEventListener('click', function() {
+            settingsOverlay.style.display = 'block';
+        });
+        
+        // Close settings overlay
+        function closeSettings() {
+            settingsOverlay.style.display = 'none';
+        }
+        
+        closeButton.addEventListener('click', closeSettings);
+        cancelButton.addEventListener('click', closeSettings);
+        
+        // Tab switching functionality
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.style.display = 'none';
+                });
+                
+                // Show selected tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).style.display = 'block';
+                
+                // Update active tab button
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
