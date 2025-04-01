@@ -1,16 +1,71 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, session
 
+# Initialize Flask app FIRST
 app = Flask(__name__)
+app.secret_key = 'your-secret-key-123'  # Needed for session management
 
+# Hardcoded master credentials (CHANGE THESE!)
+MASTER_EMAIL = "admin@macrocal.com"
+MASTER_PASSWORD = "superdupersecurepassword123456789"
+
+# Routes should be defined AFTER app initialization
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # For now using hardcoded credentials (replace with your master credentials)
+        if (request.form['email'] == 'admin@macrocal.com' and 
+            request.form['password'] == 'superdupersecurepassword123456789'):
+            session['logged_in'] = True
+            return redirect(url_for('home'))  # Redirect to home page after login
+        else:
+            return "Invalid credentials", 401
+    return render_template('login.html')
+
+@app.route('/home')
+def home():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    return render_template('homePage.html')  # This will show your dashboard
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('index'))
+
+def login_required(func):
+    def wrapper(*args, **kwargs):
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        return func(*args, **kwargs)
+    return wrapper
+
+@app.route('/home')
+@login_required
+def home():
+    return render_template('homePage.html')
+class Calories:
+    def __init__(self, goal, ht, wt, gender, age, activity_lvl):
+        self.goal = goal
+        self.height = ht
+        self.weight = wt
+        self.activity_lvl = activity_lvl
+        self.gender = gender
+        self.age = age
+        self.maint_cals = self.set_maintenance_cals()
+        self.sed_def = self.sedentary_deficit()
+        self.fts = self.fats()
+        self.ptn = self.protein()
+        self.carbs = self.carbohydrates()
+
+    # ... (keep all your existing Calories class methods exactly as they were) ...
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='www.macro_cal.com', port=5000, debug=True)
 
 class Calories:
-
     def __init__(self, goal, ht, wt, gender, age, activity_lvl):
        '''
         Init for Calories class

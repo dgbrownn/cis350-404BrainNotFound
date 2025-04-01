@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<form action ="/calculate" method="POST">
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacroCal Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signupStyles.css') }}">
+</head>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +51,16 @@
                     <input type="radio" id="female" name="gender" value="female">
                 </div>
             </div>
-            
+              <div class="form-group">
+        <label for="weight">Enter Your Weight</label>
+        <input type="number" id="weight" name="weight" placeholder="Enter a Number" required>
+        <div class="unit-toggle">
+            <label for="lbs">lbs</label>
+            <input type="radio" id="lbs" name="weight-unit" value="lbs" checked>
+            <label for="kg">kg</label>
+            <input type="radio" id="kg" name="weight-unit" value="kg">
+        </div>
+    </div>
         </form>
         <button onclick="location.href='homePage.html';">Complete</button><br>
         <button class="login" onclick="location.href='login.html';">Login Instead</button>

@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<nav class="sidebar">
+    <ul>
+        <li><a href="/home">Dashboard</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/logout">Log Out</a></li>
+    </ul>
+</nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Layout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homePageStyles.css') }}">
+</head>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,17 +35,23 @@
         <main class="content">
             <h2>Your Caloric Intake Summary</h2>
             <div class="calorie-summary">
-                <div class="info-box">
-                    <h3>Recommended Daily Intake</h3>
-                    <p><span>####</span> calories</p>
-                </div>
-                <div class="info-box">
-                    <h3>More Information</h3>
-                    <p><span>####</span> lorem</p>
-                </div>
-                <div class="info-box">
-                    <h3>More Information</h3>
-                    <p><span>####</span> ipsum</p>
+    <div class="info-box">
+        <h3>Recommended Daily Intake</h3>
+        <p><span>{{ maint_cals }}</span> calories</p>
+    </div>
+    <div class="info-box">
+        <h3>Recommended Protein</h3>
+        <p><span>{{ protein }}</span> grams</p>
+    </div>
+    <div class="info-box">
+        <h3>Recommended Carbs</h3>
+        <p><span>{{ carbs }}</span> grams</p>
+    </div>
+    <div class="info-box">
+        <h3>Recommended Fats</h3>
+        <p><span>{{ fats }}</span> grams</p>
+    </div>
+</div>
                 </div>
             </div>
         </main>
