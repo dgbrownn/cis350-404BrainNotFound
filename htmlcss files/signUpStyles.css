@@ -1,78 +1,78 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #cce7ff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: Arial, sans-serif; /* Sets font to sans-serif font */
+    background-color: #cce7ff; /* Light blue background */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    display: flex; /* Uses flexbox to center content */
+    justify-content: center; /* Horizontally centers the content */
+    align-items: center; /* Vertically centers the content */
+    height: 100vh; /* Full viewport height */
 }
 
 .container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
+    background-color: #ffffff; /* White background for content box */
+    border-radius: 10px; /* Rounded corners (I think Eli)*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    padding: 20px; /* Space inside the box */
+    max-width: 500px; /* Max width */
+    width: 100%; /* Take full width of screen */
+    text-align: center; /* Center-aligns text */
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 24px; /* Sets font size for heading */
+    margin-bottom: 10px; /* Space below heading */
 }
 
 .highlight {
-    font-weight: bold;
+    font-weight: bold; /* Makes text bold */
 }
 
 p {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 16px; /* Font size for paragraph */
+    margin-bottom: 20px; /* Space below paragraph */
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px;  /* Space below form */
 }
 
 label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    display: block; /* Makes label take full width */
+    font-weight: bold; /* Makes label text bold */
+    margin-bottom: 5px; /* Space below label */
 }
 
 input[type="number"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    width: calc(100% - 20px); /* Full width minus padding (I think -Eli) */
+    padding: 10px; /* Inner space in input */
+    border: 1px solid #ccc; /* Unkown color border */
+    border-radius: 5px; /* Slightly rounded corners */
+    margin-bottom: 10px; /* Space below input */
 }
 
 .unit-toggle, .gender-toggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; /* Arrange items in a row */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 .unit-toggle label, .gender-toggle label {
-    margin: 0 10px;
+    margin: 0 10px; /* Space between labels */
 }
 
 button {
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Inner padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer (I think -Eli) */
 }
 
 button.login {
-    background-color: transparent;
-    color: #000000;
-    margin-top: 10px;
-    border: 1px solid #000000;
+    background-color: transparent; /* No background color */
+    color: #000000; /* Black text */
+    margin-top: 10px; /* Space above button */
+    border: 1px solid #000000; /* Black border */
 }
