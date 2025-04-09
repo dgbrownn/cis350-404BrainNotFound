@@ -1,14 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 
-# Initialize Flask app FIRST
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-123'  # Needed for session management
+app.secret_key = 'your-secret-key-123'  # Change this to a real secret key
 
-# Hardcoded master credentials (CHANGE THESE!)
-MASTER_EMAIL = "admin@macrocal.com"
-MASTER_PASSWORD = "superdupersecurepassword123456789"
+# Admin credentials
+ADMIN_EMAIL = "admin@macrocal.com"
+ADMIN_PASSWORD = "pass"
 
-# Routes should be defined AFTER app initialization
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -16,55 +14,104 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # For now using hardcoded credentials (replace with your master credentials)
-        if (request.form['email'] == 'admin@macrocal.com' and 
-            request.form['password'] == 'superdupersecurepassword123456789'):
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        if email == ADMIN_EMAIL and password == ADMIN_PASSWORD:
             session['logged_in'] = True
-            return redirect(url_for('home'))  # Redirect to home page after login
+            return redirect(url_for('home'))
         else:
-            return "Invalid credentials", 401
+            flash('Invalid credentials', 'error')
+            return redirect(url_for('login'))
     return render_template('login.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        # Get form data
+        weight = float(request.form.get('weight'))
+        height = float(request.form.get('height'))
+        exercise = int(request.form.get('exercise'))
+        gender = request.form.get('gender')
+        
+        # Determine activity level
+        if exercise >= 5:
+            activity = 'active'
+        elif exercise >= 3:
+            activity = 'moderate'
+        else:
+            activity = 'sedentary'
+        
+        # Create Calories instance
+        user = Calories(
+            goal='maintain weight',  # Default goal
+            ht=height,
+            wt=weight,
+            gender=gender,
+            age=30,  # Default age
+            activity_lvl=activity
+        )
+        
+        # Store results in session
+        session['user_data'] = {
+            'maint_cals': user.maint_cals,
+            'protein': user.ptn,
+            'carbs': user.carbs,
+            'fats': user.fts
+        }
+        
+        return redirect(url_for('home'))
+    
+    return render_template('signUp.html')
 
 @app.route('/home')
 def home():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    return render_template('homePage.html')  # This will show your dashboard
+    
+    # Get calculated data or use defaults
+    user_data = session.get('user_data', {
+        'maint_cals': 2000,
+        'protein': 150,
+        'carbs': 250,
+        'fats': 65
+    })
+    
+    return render_template('homePage.html', **user_data)
+@app.route('/update_protein', methods=['POST'])
+def update_protein():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    
+    data = request.get_json()
+    protein_ratio = float(data['protein_ratio'])
+    maint_cals = float(data['current_cals'])
+    
+    if 'user_data' in session:
+        # Update all macros
+        session['user_data']['protein'] = round((maint_cals * protein_ratio / 4), 2)
+        remaining_ratio = 1 - protein_ratio
+        session['user_data']['carbs'] = round((maint_cals * remaining_ratio * 0.6 / 4), 2)
+        session['user_data']['fats'] = round((maint_cals * remaining_ratio * 0.4 / 9), 2)
+    
+    return {'status': 'success'}
+@app.route('/settings')
+def settings():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    
+    user_data = session.get('user_data', {
+        'maint_cals': 2000,
+        'protein': 150,
+        'carbs': 250,
+        'fats': 65
+    })
+    
+    return render_template('settings.html', **user_data)
 @app.route('/logout')
 def logout():
-    session.pop('logged_in', None)
+    session.clear()
     return redirect(url_for('index'))
-
-def login_required(func):
-    def wrapper(*args, **kwargs):
-        if not session.get('logged_in'):
-            return redirect(url_for('login'))
-        return func(*args, **kwargs)
-    return wrapper
-
-@app.route('/home')
-@login_required
-def home():
-    return render_template('homePage.html')
-class Calories:
-    def __init__(self, goal, ht, wt, gender, age, activity_lvl):
-        self.goal = goal
-        self.height = ht
-        self.weight = wt
-        self.activity_lvl = activity_lvl
-        self.gender = gender
-        self.age = age
-        self.maint_cals = self.set_maintenance_cals()
-        self.sed_def = self.sedentary_deficit()
-        self.fts = self.fats()
-        self.ptn = self.protein()
-        self.carbs = self.carbohydrates()
-
-    # ... (keep all your existing Calories class methods exactly as they were) ...
-
-if __name__ == '__main__':
-    app.run(host='www.macro_cal.com', port=5000, debug=True)
-
 class Calories:
     def __init__(self, goal, ht, wt, gender, age, activity_lvl):
        '''
@@ -313,7 +360,20 @@ class Calories:
         '''
         if self.maint_cals != 0:
             return round(self.maint_cals * .45 / 4, 2)
-        
+    def set_protein_goal(self, protein_ratio):
+        """Set custom protein ratio (0.0 to 1.0)"""
+        if not 0 <= protein_ratio <= 1:
+            raise ValueError("Protein ratio must be between 0 and 1")
+        self.protein_ratio = protein_ratio
+        self.ptn = round((self.maint_cals * protein_ratio / 4), 2)
+        # Recalculate other macros to maintain balance
+        remaining_ratio = 0.7  # 70% for carbs/fats
+        self.carbs = round((self.maint_cals * remaining_ratio * 0.6 / 4), 2)  # 60% of remaining
+        self.fts = round((self.maint_cals * remaining_ratio * 0.4 / 9), 2)   # 40% of remaining
+
+    def get_protein_goal(self):
+        """Returns current protein ratio"""
+        return self.protein_ratio        
     def __str__(self):
         '''
         Temporary str method for displaying output
@@ -339,7 +399,8 @@ class Calories:
         elif self.goal.lower() == 'maintain weight':
             return f'Maintenance Calories: {self.maint_cals} kcal\nFats: {self.fts}g\nCarbs: {self.carbs}g\nProtein: {self.ptn}g'
 
-
 if __name__ == '__main__':
     c = Calories('lose weight', 60, 200, 'male', 20, 'active')
     print(c.__str__())
+if __name__ == '__main__':
+    app.run(debug=True)

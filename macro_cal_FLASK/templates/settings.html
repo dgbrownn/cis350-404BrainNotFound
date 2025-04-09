@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - MacroCal</title>
+    <style>
+        /* Keep your existing styles, add these new ones */
+        .protein-control {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .protein-slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .protein-value {
+            font-weight: bold;
+            color: #0078d4;
+        }
+    </style>
+</head>
+<body>
+    <div id="settings-overlay">
+        <div class="close-button" onclick="closeSettings()">X</div>
+        <div class="settings-container">
+            <div class="sidebar">
+                <ul>
+                    <li><a href="#" onclick="showSection('profile')">Profile</a></li>
+                    <li><a href="#" onclick="showSection('macros')">Macro Goals</a></li>
+                    <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <!-- Protein Control Section -->
+                <div id="macros-section" style="display:block;">
+                    <h2>Macro Nutrient Goals</h2>
+                    <div class="protein-control">
+                        <label for="protein-slider">Protein Goal: <span id="protein-value" class="protein-value">30%</span></label>
+                        <input type="range" id="protein-slider" class="protein-slider" 
+                               min="10" max="50" value="30" step="1">
+                        <p>Current: {{ protein }}g protein daily</p>
+                        <button onclick="saveProteinGoal()">Save Protein Goal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function saveProteinGoal() {
+    const proteinRatio = proteinSlider.value / 100;
+    fetch("{{ url_for('update_protein') }}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            protein_ratio: proteinRatio,
+            current_cals: {{ maint_cals }}
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'success') {
+            alert('Macros updated successfully!');
+            window.location.reload();
+        }
+    });
+}
+</script>
+</body>
+</html>
