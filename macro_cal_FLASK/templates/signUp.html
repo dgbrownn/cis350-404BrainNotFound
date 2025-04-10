@@ -1,69 +1,57 @@
 <!DOCTYPE html>
-<form action ="/calculate" method="POST">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MacroCal Form</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signupStyles.css') }}">
-</head>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MacroCal Form</title>
-    <link rel="stylesheet" href="signUpStyles.css">
+    <title>Update Metrics - MacroCal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signUpStyles.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>Thank you for Choosing <span class="highlight">MacroCal!</span></h1>
         <p>You are almost ready to get a <span class="highlight">Personal Plan!</span> We just need some information from you.</p>
-        <form>
+        
+        <form method="POST" action="{{ url_for('signup') }}">
             <div class="form-group">
-                <label for="weight">Enter Your Weight</label>
-                <input type="number" id="weight" name="weight" placeholder="Enter a Number">
-                <div class="unit-toggle">
-                    <label for="lbs">lbs</label>
-                    <input type="radio" id="lbs" name="weight-unit" value="lbs" checked>
-                    <label for="kg">kg</label>
-                    <input type="radio" id="kg" name="weight-unit" value="kg">
-                </div>
+                <label for="weight">Enter Your Weight (lbs)</label>
+                <input type="number" id="weight" name="weight" placeholder="Enter a Number" value="{{ weight }}" required>
             </div>
+            
             <div class="form-group">
-                <label for="height">Enter Your Height</label>
-                <input type="number" id="height" name="height" placeholder="Enter a Number">
-                <div class="unit-toggle">
-                    <label for="ft">in</label>
-                    <input type="radio" id="ft" name="height-unit" value="ft" checked>
-                    <label for="cm">cm</label>
-                    <input type="radio" id="cm" name="height-unit" value="cm">
-                </div>
+                <label for="height">Enter Your Height (inches)</label>
+                <input type="number" id="height" name="height" placeholder="Enter a Number" value="{{ height }}" required>
             </div>
+            
             <div class="form-group">
                 <label for="exercise">About How Many Days a Week Do You Exercise?</label>
-                <input type="number" id="exercise" name="exercise" placeholder="Enter a Number">
+                <select id="exercise" name="exercise" required>
+                    <option value="5" {% if exercise ==5 %}selected{% endif %}>Active (5+ days/week)</option>
+                    <option value="3" {% if exercise ==3 %}selected{% endif %}>Moderate (3-4 days/week)</option>
+                    <option value="1" {% if exercise ==1 %}selected{% endif %}>Sedentary (1-2 days/week)</option>
+                </select>
             </div>
+            
             <div class="form-group">
-                <label for="gender">Gender</label>
+                <label>Gender</label>
                 <div class="gender-toggle">
                     <label for="male">Male</label>
-                    <input type="radio" id="male" name="gender" value="male" checked>
+                    <input type="radio" id="male" name="gender" value="male" {% if gender == 'male' %}checked{% endif %} required>
                     <label for="female">Female</label>
-                    <input type="radio" id="female" name="gender" value="female">
+                    <input type="radio" id="female" name="gender" value="female" {% if gender == 'female' %}checked{% endif %}>
                 </div>
             </div>
-              <div class="form-group">
-        <label for="weight">Enter Your Weight</label>
-        <input type="number" id="weight" name="weight" placeholder="Enter a Number" required>
-        <div class="unit-toggle">
-            <label for="lbs">lbs</label>
-            <input type="radio" id="lbs" name="weight-unit" value="lbs" checked>
-            <label for="kg">kg</label>
-            <input type="radio" id="kg" name="weight-unit" value="kg">
-        </div>
-    </div>
+            
+            <div class="form-group">
+                <label for="goal">Goal</label>
+                <select id="goal" name="goal" required>
+                    <option value="maintain weight" {% if goal == 'maintain weight' %}selected{% endif %}>Maintain Weight</option>
+                    <option value="lose weight" {% if goal == 'lose weight' %}selected{% endif %}>Lose Weight</option>
+                    <option value="gain weight" {% if goal == 'gain weight' %}selected{% endif %}>Gain Weight</option>
+                </select>
+            </div>
+            
+            <button type="submit">Complete</button>
         </form>
-        <button onclick="location.href='homePage.html';">Complete</button><br>
-        <button class="login" onclick="location.href='login.html';">Login Instead</button>
     </div>
 </body>
 </html>

@@ -33,7 +33,8 @@ def signup():
         height = float(request.form.get('height'))
         exercise = int(request.form.get('exercise'))
         gender = request.form.get('gender')
-        
+        goal = request.form.get('goal', 'maintain weight')  # Add goal field to your form
+
         # Determine activity level
         if exercise >= 5:
             activity = 'active'
@@ -41,28 +42,41 @@ def signup():
             activity = 'moderate'
         else:
             activity = 'sedentary'
-        
-        # Create Calories instance
+
+        # Create Calories instance with updated data
         user = Calories(
-            goal='maintain weight',  # Default goal
+            goal=goal,
             ht=height,
             wt=weight,
             gender=gender,
-            age=30,  # Default age
+            age=30,  # You may want to add age field too
             activity_lvl=activity
         )
-        
-        # Store results in session
+
+        # Update session data
         session['user_data'] = {
             'maint_cals': user.maint_cals,
             'protein': user.ptn,
             'carbs': user.carbs,
-            'fats': user.fts
+            'fats': user.fts,
+            'weight': weight,
+            'height': height,
+            'gender': gender,
+            'activity_lvl': activity,
+            'goal': goal
         }
-        
+
+        flash('Your metrics have been updated successfully!', 'success')
         return redirect(url_for('home'))
-    
-    return render_template('signUp.html')
+
+    # For GET requests, pre-populate form with existing data
+    user_data = session.get('user_data', {})
+    return render_template('signUp.html',
+                         weight=user_data.get('weight', ''),
+                         height=user_data.get('height', ''),
+                         exercise={'active':5, 'moderate':3, 'sedentary':1}.get(user_data.get('activity_lvl', 'moderate'), 3),
+                         gender=user_data.get('gender', 'male'),
+                         goal=user_data.get('goal', 'maintain weight'))
 
 @app.route('/home')
 def home():
@@ -78,63 +92,107 @@ def home():
     })
     
     return render_template('homePage.html', **user_data)
-@app.route('/update_protein', methods=['POST'])
-def update_protein():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    
-    data = request.get_json()
-    protein_ratio = float(data['protein_ratio'])
-    maint_cals = float(data['current_cals'])
-    
-    if 'user_data' in session:
-        # Update all macros
-        session['user_data']['protein'] = round((maint_cals * protein_ratio / 4), 2)
-        remaining_ratio = 1 - protein_ratio
-        session['user_data']['carbs'] = round((maint_cals * remaining_ratio * 0.6 / 4), 2)
-        session['user_data']['fats'] = round((maint_cals * remaining_ratio * 0.4 / 9), 2)
-    
-    return {'status': 'success'}
+
 @app.route('/settings')
 def settings():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     
+    # Get user data with defaults
     user_data = session.get('user_data', {
         'maint_cals': 2000,
         'protein': 150,
         'carbs': 250,
-        'fats': 65
+        'fats': 65,
+        'weight': 150,
+        'height': 70,
+        'age': 30,
+        'gender': 'male',
+        'activity_lvl': 'moderate',
+        'goal': 'maintain weight'
     })
     
-    return render_template('settings.html', **user_data)
+    # Create calculator instance with user's data
+    calculator = Calories(
+        goal=user_data.get('goal', 'maintain weight'),
+        ht=user_data.get('height', 70),
+        wt=user_data.get('weight', 150),
+        gender=user_data.get('gender', 'male'),
+        age=user_data.get('age', 30),
+        activity_lvl=user_data.get('activity_lvl', 'moderate')
+    )
+    
+    # Prepare data for template
+    settings_data = {
+        'maint_cals': calculator.maint_cals,
+        'protein': calculator.ptn,
+        'carbs': calculator.carbs,
+        'fats': calculator.fts,
+        'weight': calculator.weight,
+        'height': calculator.height,
+        'age': calculator.age,
+        'gender': calculator.gender,
+        'activity_lvl': calculator.activity_lvl,
+        'goal': calculator.goal,
+        'protein_explanation': calculator.get_protein_explanation()
+    }
+    
+    return render_template('settings.html', **settings_data)
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
 class Calories:
     def __init__(self, goal, ht, wt, gender, age, activity_lvl):
-       '''
+        '''
         Init for Calories class
         :param ht: User height (in inches)
         :param wt: User weight (in pounds)
         :param gender: User gender (Male or Female)
         :param activity_lvl: User's activity level (sedentary [1-2 30 mins exercise per week]
         moderate [3-4 30 mins exercise per week], active [5+ 30 mins exercise per week]).
-        - maint_cals: User's calculated maintenance calories (daily
-        calorie intake to maintain bodyweight) called from function set_maintenance_cals.
         '''
-       self.goal = goal
-       self.height = ht
-       self.weight = wt
-       self.activity_lvl = activity_lvl
-       self.gender = gender
-       self.age = age
-       self.maint_cals = self.set_maintenance_cals()
-       self.sed_def = self.sedentary_deficit()
-       self.fts = self.fats()
-       self.ptn = self.protein()
-       self.carbs = self.carbohydrates()
+        self.goal = goal
+        self.height = ht
+        self.weight = wt
+        self.activity_lvl = activity_lvl
+        self.gender = gender
+        self.age = age
+        self.maint_cals = self.set_maintenance_cals()
+        self.ptn = self.calculate_protein()  # Auto-calculated protein
+        self.fts = self.fats()
+        self.carbs = self.carbohydrates()
+
+    def calculate_protein(self):
+        """Automatically calculates protein needs in grams"""
+        # Base protein per pound based on activity level
+        if self.activity_lvl.lower() == 'sedentary':
+            protein_per_pound = 0.7
+        elif self.activity_lvl.lower() == 'moderate':
+            protein_per_pound = 0.8
+        elif self.activity_lvl.lower() == 'active':
+            protein_per_pound = 1.0
+        else:
+            protein_per_pound = 0.7  # default
+        
+        # Adjust for goals
+        if self.goal.lower() == 'lose weight':
+            protein_per_pound *= 1.1
+        elif self.goal.lower() == 'gain weight':
+            protein_per_pound *= 1.2
+        
+        return round(self.weight * protein_per_pound, 1)
+
+    def get_protein_explanation(self):
+        """Returns explanation of protein calculation"""
+        protein_per_pound = self.calculate_protein() / self.weight
+        return (
+            f"Based on your weight ({self.weight} lbs), {self.activity_lvl} activity level, "
+            f"and goal to {self.goal}, your protein is calculated at {protein_per_pound:.1f}g/lb "
+            f"totaling {self.ptn}g daily."
+        )
 
     def set_goal(self, goal):
         '''
@@ -310,11 +368,11 @@ class Calories:
                 return round(self.sed_def, 2)
 
     def active_surplus(self):
-         '''
+        '''
         Surpluses based off of activity level. Gradually increases for each step 'up' in activity
         I.E. Active activity level will require more calories for a surplus than sedentary 
         '''
-         if self.goal.lower() == 'gain weight':
+        if self.goal.lower() == 'gain weight':
             if self.activity_lvl.lower() == 'active':
                 if self.maint_cals != 0:
                     self.act_surplus = self.maint_cals + 800
@@ -351,8 +409,7 @@ class Calories:
         '''
         Calculates protein based off suggested daily calorie intake percentages
         '''
-        if self.maint_cals != 0:
-            return round((self.maint_cals * .3 / 4), 2)
+        return self.calculate_protein()  # Now uses the automatic calculation
     
     def carbohydrates(self):
         '''
@@ -360,20 +417,7 @@ class Calories:
         '''
         if self.maint_cals != 0:
             return round(self.maint_cals * .45 / 4, 2)
-    def set_protein_goal(self, protein_ratio):
-        """Set custom protein ratio (0.0 to 1.0)"""
-        if not 0 <= protein_ratio <= 1:
-            raise ValueError("Protein ratio must be between 0 and 1")
-        self.protein_ratio = protein_ratio
-        self.ptn = round((self.maint_cals * protein_ratio / 4), 2)
-        # Recalculate other macros to maintain balance
-        remaining_ratio = 0.7  # 70% for carbs/fats
-        self.carbs = round((self.maint_cals * remaining_ratio * 0.6 / 4), 2)  # 60% of remaining
-        self.fts = round((self.maint_cals * remaining_ratio * 0.4 / 9), 2)   # 40% of remaining
 
-    def get_protein_goal(self):
-        """Returns current protein ratio"""
-        return self.protein_ratio        
     def __str__(self):
         '''
         Temporary str method for displaying output
@@ -399,8 +443,5 @@ class Calories:
         elif self.goal.lower() == 'maintain weight':
             return f'Maintenance Calories: {self.maint_cals} kcal\nFats: {self.fts}g\nCarbs: {self.carbs}g\nProtein: {self.ptn}g'
 
-if __name__ == '__main__':
-    c = Calories('lose weight', 60, 200, 'male', 20, 'active')
-    print(c.__str__())
 if __name__ == '__main__':
     app.run(debug=True)

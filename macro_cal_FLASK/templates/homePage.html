@@ -10,40 +10,51 @@
     <div class="layout">
         <nav class="sidebar">
             <ul>
-                <li><a href="{{ url_for('home') }}"><img src="https://www.nicepng.com/png/full/17-178841_home-png-home-icon-free.png" alt="Home"> home</a></li>
-                <li class="settings-item"><a href="#"><img src="https://th.bing.com/th/id/OIP.4peAp0JoHFHJooTGiQEa7gAAAA?rs=1&pid=ImgDetMain" alt="Settings"> Settings</a></li>
-                <li class="LogOutButton"><a href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/home-icon.png') }}" alt="Home"> Home</a></li>
+                <li><a href="{{ url_for('settings') }}"><img src="{{ url_for('static', filename='images/settings-icon.png') }}" alt="Settings"> Settings</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             </ul>
         </nav>
-        <header class="header">
-    <h1>Home</h1>
-    <button onclick="openSettings()">Settings</button>
+        
         <main class="content">
-            <h2>Your Caloric Intake Summary</h2>
+
+<!-- Add this near the top of your content -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+            <header class="content-header">
+                <h1>Your Macro Dashboard</h1>
+            </header>
+            
             <div class="calorie-summary">
                 <div class="info-box">
                     <h3>Recommended Daily Intake</h3>
-                    <p><span>{{ maint_cals }}</span> calories</p>
+                    <p class="value">{{ maint_cals }}</p>
+                    <p class="unit">calories</p>
                 </div>
                 <div class="info-box">
-                    <h3>Recommended Protein</h3>
-                    <p><span>{{ protein }}</span> grams</p>
+                    <h3>Protein</h3>
+                    <p class="value">{{ protein }}</p>
+                    <p class="unit">grams</p>
                 </div>
                 <div class="info-box">
-                    <h3>Recommended Carbs</h3>
-                    <p><span>{{ carbs }}</span> grams</p>
+                    <h3>Carbohydrates</h3>
+                    <p class="value">{{ carbs }}</p>
+                    <p class="unit">grams</p>
                 </div>
                 <div class="info-box">
-                    <h3>Recommended Fats</h3>
-                    <p><span>{{ fats }}</span> grams</p>
+                    <h3>Fats</h3>
+                    <p class="value">{{ fats }}</p>
+                    <p class="unit">grams</p>
                 </div>
             </div>
         </main>
     </div>
 </body>
-<script>
-    function openSettings() {
-        window.location.href = "{{ url_for('settings') }}";
-    }
-</script>
 </html>
