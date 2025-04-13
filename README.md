@@ -19,3 +19,7 @@ Our project is a macronutrient (fats, protein, carbohydrates) and calorie calcul
 
 In order to keep track of features, designs, and the actual web app, we used the project management application Jira. This kept us on track for the various different features functions and designs that we had to do. It allowed us to focus on what needed to get done while keeping it simple. Overall, this helped streamline our workflow. 
 ![image](https://github.com/user-attachments/assets/7f7bfa4d-89ea-48b7-acca-29a17d07fb5a)
+
+# Run Instructions
+
+Running the application is quite a simple process due to using flask! All you need to do in order to run the website is save the folder in this repo "macro_cal_FLASK". This will download the code for the python, HTML, and CSS. When downloaded, make sure to run the file in a virtual environment (For example if you are using a Linux system, make sure you run python3 -m venv, usr/bin/activate, and then flask run! This is used to cache all the times someone accessed the website). Doing this will run the website on your device, using the loopback address 127.0.0.1. When you input that into your browser, it will show the login page. Here there will be a button that says admin login. You can find the admin information in the source code. When inputting the admin information, you will be greeted by the metrics page, and once submitted, you will be directed to the homepage, to see your needed calories, protein, and other notable nutrients!
