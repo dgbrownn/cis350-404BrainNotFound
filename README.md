@@ -23,3 +23,23 @@ In order to keep track of features, designs, and the actual web app, we used the
 # Run Instructions
 
 Running the application is quite a simple process due to using flask! All you need to do in order to run the website is save the folder in this repo "macro_cal_FLASK". This will download the code for the python, HTML, and CSS. When downloaded, make sure to run the file in a virtual environment (For example if you are using a Linux system, make sure you run python3 -m venv, usr/bin/activate, and then flask run! This is used to cache all the times someone accessed the website). Doing this will run the website on your device, using the loopback address 127.0.0.1. When you input that into your browser, it will show the login page. Here there will be a button that says admin login. You can find the admin information in the source code. When inputting the admin information, you will be greeted by the metrics page, and once submitted, you will be directed to the homepage, to see your needed calories, protein, and other notable nutrients!
+
+## Login page
+![image](https://github.com/user-attachments/assets/4fad2b45-b5ca-49bb-b90c-a445f4d996f5)
+Once you run the server in the terminal, go to any browser you prefer (Firefox, Google Chrome, Microsoft Edge, etc.), and type in the address it gives you (it should be http://127.0.0.1:5000). This will bring you to the homepage! You can then login using the admin credentials (this is hardcoded into the app.py file!). 
+
+## Calculation page
+![image](https://github.com/user-attachments/assets/4100c6ec-d102-4079-bcb5-012d896abb7a)
+
+Once you login, you will be prompted with the above. This is the interface to do the calorie calculation! Put in your metrics, and hit the complete button. This will then bring you to the dashboard with the calories, protein, carbohydrates, and fats. 
+
+## Dashboard
+![image](https://github.com/user-attachments/assets/5665fa9e-38c2-4c17-858e-3bc86dacc7ab)
+This is an example of what the dashboard would look like! Now, of course this will change depending on the metrics you put into the calculation page of course. 
+
+# Conclusion
+Overall, this web app is definitly a fun little project that you can run anywhere you would like! It's a neat little web application that does serve a very good purpose of calculation calories. It is still bare bones, however that just means that there is a lot of implementation that can be done with it! We truly believe that this can be a useful tool for anyone willing to get into shape.
+
+
+
+
