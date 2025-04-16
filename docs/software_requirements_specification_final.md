@@ -41,3 +41,35 @@ This document is structured by our project's functional requirements first and t
 * NFR-13: There shall be fewer than 5 tabs to keep things simple and sleek
 * NFR-14: The systems tabs shall be easily accessible with one click
 * NFR-15: Any user shall be able to understand the website without instructions. 
+
+# Test Specification  
+This section documents executed test cases for validation, covering unit, integration, and system tests.  
+
+## Unit Tests  
+| ID  | Description                     | Steps                                                                 | Input Values                   | Expected Output               | Actual Output | Pass/Fail | Requirement Link |  
+|-----|---------------------------------|-----------------------------------------------------------------------|--------------------------------|-------------------------------|---------------|-----------|------------------|  
+| TC1 | BMR Calculation                 | 1. Enter valid height/weight/age.<br>2. Execute calculation.          | Height: 70", Weight: 160lbs, Age: 25 | BMR: ~1667 kcal           | 1667 kcal     | Pass      | FR-01, FR-04     |  
+| TC2 | Maintenance Calorie Calculation | 1. Calculate BMR first.<br>2. Apply activity multiplier.              | Activity: "moderate"          | Maintenance: ~2500 kcal    | 2500 kcal     | Pass      | FR-05            |  
+| TC3 | Macro Calculation               | 1. Enter calorie intake.<br>2. Execute macro split.                   | Calories: 2000, Protein: 30%  | Protein: 150g              | 150g          | Pass      | FR-11            |  
+| TC4 | Gender Validation               | 1. Input gender.<br>2. Validate against allowed values.               | Gender: "female"              | "female"                   | "female"      | Pass      | FR-04            |  
+
+## Integration Tests  
+| ID  | Description                     | Steps                                                                 | Input Values                   | Expected Output               | Actual Output | Pass/Fail | Requirement Link |  
+|-----|---------------------------------|-----------------------------------------------------------------------|--------------------------------|-------------------------------|---------------|-----------|------------------|  
+| TC5 | User Profile + Dashboard Sync   | 1. Update profile metrics.<br>2. Verify dashboard reflects changes.   | Weight: 170lbs → 165lbs       | Dashboard updates calories   | Updated       | Pass      | FR-07, FR-13     |  
+| TC6 | Login + Data Encryption         | 1. Log in with credentials.<br>2. Check data encryption in transit.   | Email: "test@test.com"         | Encrypted session            | Encrypted     | Pass      | NFR-06, NFR-10   |  
+| TC7 | Activity Level → Calorie Calc   | 1. Set activity level.<br>2. Verify maintenance calories update.      | Activity: "sedentary" → "active" | Calories increase by ~20%   | +20%          | Pass      | FR-05, FR-13     |  
+
+## System Tests  
+| ID  | Description                     | Steps                                                                 | Input Values                   | Expected Output               | Actual Output | Pass/Fail | Requirement Link |  
+|-----|---------------------------------|-----------------------------------------------------------------------|--------------------------------|-------------------------------|---------------|-----------|------------------|  
+| TC8 | End-to-End User Flow            | 1. Register → Login → Enter metrics → View dashboard.                 | Full user journey             | Correct macros/calories      | Correct       | Pass      | FR-06, FR-15     |  
+| TC9 | Stress Test (Multiple Users)    | 1. Simulate 50 concurrent users.                                      | 50 login requests             | All requests processed in <2s | <2s           | Pass      | NFR-01, NFR-02   |  
+| TC10| Data Privacy Check              | 1. Attempt to access another user’s dashboard via URL manipulation.   | Malicious user ID input       | Access denied                | Denied        | Pass      | NFR-07           |  
+
+# Software Artifacts
+This part of the SRS details the artifacts that we have for this project. Specifically a UML Diagram, as well as a case diagram. There is also a link to the test scripts ran presented in a google sheet.
+
+
+
+
