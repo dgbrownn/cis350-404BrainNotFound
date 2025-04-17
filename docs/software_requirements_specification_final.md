@@ -85,7 +85,13 @@ This section documents executed test cases for validation, covering unit, integr
 | TC10| Data Privacy Check              | 1. Attempt to access another user’s dashboard via URL manipulation.   | Malicious user ID input       | Access denied                | Denied        | Pass      | NFR-07           |  
 
 # Software Artifacts
-This part of the SRS details the artifacts that we have for this project. Specifically a UML Diagram, as well as a case diagram. There is also a link to the test scripts ran presented in a google sheet.
+This part of the SRS details the artifacts we have for this project, specifically a UML Diagram and a case diagram. There is also a link to the test scripts ran presented in a Google sheet.
+
+UML Diagram for Python Code: https://docs.google.com/document/d/11GkJoLwkPLsMyYJjFq2Im8ZB6uxH9JJJJRaiHgkcfZM/edit?tab=t.0
+UML Diagram for the whole project: https://docs.google.com/document/d/12Sfur0Pr24MSAavq5sjwCDOVCPrzywjilEoeVlDrzRU/edit?tab=t.0
+Gantt Chart: https://docs.google.com/spreadsheets/d/1P-es0IwoiZeVfSLGGtsHRr5ka2ETJJqb1tXknbzdbIs/edit?gid=0#gid=0
+Use Case Diagram: https://docs.google.com/document/d/1PD-ulUSecM9u9wfln4B8XIfrYQI5E7XXNzgdV7z4Jmg/edit?tab=t.0
+
 
 
 
