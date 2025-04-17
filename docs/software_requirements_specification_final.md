@@ -1,5 +1,5 @@
 # Overview
-This document details our project's functional and non-functional software requirements (Macrocal). These software requirements align with what our project is supposed to be as a finished project. 
+This Software Requirements Specification (SRS) document defines the functional and non-functional requirements for **Macrocal**, a metabolic rate and nutrition tracking application. It serves as a comprehensive guide for development, testing, and stakeholder alignment. The document is structured into software requirements (functional and non-functional), test specifications, and links to supporting artifacts.  
 # Software Requirements 
 This document is structured by our project's functional requirements first and then the non-functional requirements. The requirements will be listed, and then the specifications will be underneath them, with a unique ID to separate them.  
 
@@ -84,15 +84,20 @@ This section documents executed test cases for validation, covering unit, integr
 | TC9 | Stress Test (Multiple Users)    | 1. Simulate 50 concurrent users.                                      | 50 login requests             | All requests processed in <2s | <2s           | Pass      | NFR-01, NFR-02   |  
 | TC10| Data Privacy Check              | 1. Attempt to access another user’s dashboard via URL manipulation.   | Malicious user ID input       | Access denied                | Denied        | Pass      | NFR-07           |  
 
-# Software Artifacts
-This part of the SRS details the artifacts we have for this project, specifically a UML Diagram and a case diagram. There is also a link to the test scripts ran presented in a Google sheet.
+# Software Artifacts  
+This section provides links to design and planning artifacts created during the project's development. These links will send you to a google doc folder, which will hold 
 
-UML Diagram for Python Code: https://docs.google.com/document/d/11GkJoLwkPLsMyYJjFq2Im8ZB6uxH9JJJJRaiHgkcfZM/edit?tab=t.0
-UML Diagram for the whole project: https://docs.google.com/document/d/12Sfur0Pr24MSAavq5sjwCDOVCPrzywjilEoeVlDrzRU/edit?tab=t.0
-Gantt Chart: https://docs.google.com/spreadsheets/d/1P-es0IwoiZeVfSLGGtsHRr5ka2ETJJqb1tXknbzdbIs/edit?gid=0#gid=0
-Use Case Diagram: https://docs.google.com/document/d/1PD-ulUSecM9u9wfln4B8XIfrYQI5E7XXNzgdV7z4Jmg/edit?tab=t.0
+### **Diagrams**  
+- **Use Case Diagram**: Illustrates user interactions with the system.  
+  [View Use Case Diagram](https://docs.google.com/document/d/1PD-ulUSecM9u9wfln4B8XIfrYQI5E7XXNzgdV7z4Jmg/edit?tab=t.0)  
+- **UML Class Diagram (Python Code)**: Shows the structure of the Python implementation.  
+  [View Python UML Diagram](https://docs.google.com/document/d/11GkJoLwkPLsMyYJjFq2Im8ZB6uxH9JJJJRaiHgkcfZM/edit?tab=t.0)  
+- **UML Diagram (Full Project)**: High-level architecture of the entire system.  
+  [View Full Project UML](https://docs.google.com/document/d/12Sfur0Pr24MSAavq5sjwCDOVCPrzywjilEoeVlDrzRU/edit?tab=t.0)  
 
-
-
-
+### **Project Planning**  
+- **Gantt Chart**: Tracks project timelines and milestones.  
+  [View Gantt Chart](https://docs.google.com/spreadsheets/d/1P-es0IwoiZeVfSLGGtsHRr5ka2ETJJqb1tXknbzdbIs/edit?gid=0#gid=0)
+- **Jira Board**: Agile task management and sprint tracking.  
+  [View Jira Board](https://macrocals.atlassian.net/jira/software/projects/UR404/boards/3) 
 
